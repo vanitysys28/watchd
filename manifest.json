@@ -1,0 +1,6 @@
+{
+  "manifest_version": 3,
+  "name": "Watchd",
+  "description": "Extension to track which videos were viewed or not",
+  "version": "1.0",
+  
