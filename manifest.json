@@ -3,7 +3,6 @@
   "name": "Watchd",
   "description": "Extension to track which videos were viewed or not",
   "version": "1.0",
-{
   "content_scripts": [
     {
       "js": ["script.js"],
@@ -12,6 +11,5 @@
       ]
     }
   ]
-}
 }
   
