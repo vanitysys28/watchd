@@ -17,3 +17,7 @@ function getVideoID(){
 function getVideoCurrentTime(){
    return document.getElementsByTagName("video")[0].currentTime
 }
+
+function setLocalStorage(data){
+   localStorage.setItem('watchd', data);
+}
