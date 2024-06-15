@@ -9,3 +9,7 @@ document.getElementsByTagName("video")[0].addEventListener('play', () => {
         console.log('The video is playing.');
 })
 }
+
+function getVideoCurrentTime(){
+   document.getElementsByTagName("video")[0].currentTime
+}
