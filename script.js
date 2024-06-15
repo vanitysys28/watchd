@@ -10,6 +10,10 @@ document.getElementsByTagName("video")[0].addEventListener('play', () => {
 })
 }
 
+function getVideoID(){
+   return new URL(document.URL).searchParams.get('v')
+}
+
 function getVideoCurrentTime(){
    return document.getElementsByTagName("video")[0].currentTime
 }
