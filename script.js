@@ -18,14 +18,13 @@ function getVideoCurrentTime(){
    return document.getElementsByTagName("video")[0].currentTime
 }
 
+function storeVideoPlaytime(){
+    var videoid = getVideoID()
+    var time = getVideoCurrentTime()
+    var videoPlaytime = {id: videoid, playtime: time}
+    return videoPlaytime
+}
+
 function setLocalStorage(data){
    localStorage.setItem('watchd', data);
 }
-
-function storeVideoData(){
-    var videoid = getVideoID()
-    var time = getVideoCurrentTime()
-    var videoData = {id: videoid, playtime: time}
-    return videoData
-}
-
