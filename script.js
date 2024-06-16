@@ -1,3 +1,5 @@
+var videoData = []
+
 function pausedChecker(){
 document.getElementsByTagName("video")[0].addEventListener('pause', () => {
         console.log('The video has been paused at ' + getVideoCurrentTime());
@@ -23,6 +25,10 @@ function storeVideoPlaytime(){
     var time = getVideoCurrentTime()
     var videoPlaytime = {id: videoid, playtime: time}
     return videoPlaytime
+}
+
+function aggregateVideoData(){
+    videoData.push(storeVideoPlaytime())
 }
 
 function setLocalStorage(data){
