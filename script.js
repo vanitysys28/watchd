@@ -27,6 +27,13 @@ function storeVideoPlaytime(){
     return videoPlaytime
 }
 
+function checkDuplicateVideoData(){
+    var index = videoData.findIndex(video => videoid = getVideoID())
+    if (index !== -1) {
+	return true
+    }
+}
+
 function aggregateVideoData(){
     videoData.push(storeVideoPlaytime())
 }
