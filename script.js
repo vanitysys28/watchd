@@ -20,6 +20,14 @@ function getVideoCurrentTime(){
    return document.getElementsByTagName("video")[0].currentTime
 }
 
+function getVideoPlaytime(){
+    for(var i = 0; i < document.getElementsByTagName("video")[0].played.length; i++) { 
+	var intervalStart = document.getElementsByTagName("video")[0].played.start(i)
+	var intervalEnd = document.getElementsByTagName("video")[0].played.end(i)
+	console.log(intervalStart + "-" + intervalEnd)
+}	
+}
+
 function storeVideoPlaytime(){
     var videoid = getVideoID()
     var time = getVideoCurrentTime()
