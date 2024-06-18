@@ -20,10 +20,6 @@ function getVideoDuration(){
     return document.getElementsByTagName("video")[0].duration
 }  
 
-function getVideoCurrentTime(){
-   return document.getElementsByTagName("video")[0].currentTime
-}
-
 function getVideoPlaytime(){
     var videoPlaytime = []
     
