@@ -21,11 +21,13 @@ function getVideoCurrentTime(){
 }
 
 function getVideoPlaytime(){
+    var videoPlaytime = []
     for(var i = 0; i < document.getElementsByTagName("video")[0].played.length; i++) { 
 	var intervalStart = document.getElementsByTagName("video")[0].played.start(i)
 	var intervalEnd = document.getElementsByTagName("video")[0].played.end(i)
-	console.log(intervalStart + "-" + intervalEnd)
-}	
+	videoPlaytime.push(intervalStart + ":" + intervalEnd)
+    }
+    return videoPlaytime
 }
 
 function storeVideoPlaytime(){
