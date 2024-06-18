@@ -40,10 +40,10 @@ function checkDuplicateVideoData(){
     }
 }
 
-function aggregateVideoData(){
+function storeVideoData(){
     videoData.push(getVideoPlaytime())
 }
 
-function setLocalStorage(data){
+function backupVideoData(data){
    localStorage.setItem('watchd', data);
 }
