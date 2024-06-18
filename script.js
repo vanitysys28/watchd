@@ -52,3 +52,10 @@ function storeVideoData(){
 function backupVideoData(data){
    localStorage.setItem('watchd', data);
 }
+
+function main(){
+    pausedChecker()
+    playingChecker()
+}
+
+main()
