@@ -25,14 +25,15 @@ function getVideoCurrentTime(){
 }
 
 function getVideoPlaytime(){
-    var videoId = getVideoID()
     var videoPlaytime = []
+    
     for(var i = 0; i < document.getElementsByTagName("video")[0].played.length; i++) { 
 	var intervalStart = document.getElementsByTagName("video")[0].played.start(i)
 	var intervalEnd = document.getElementsByTagName("video")[0].played.end(i)
 	videoPlaytime.push(intervalStart + ":" + intervalEnd)
     }
-    var videoData = {id: videoId, playtime: videoPlaytime}
+    
+    var videoData = {id: getVideoID(), playtime: videoPlaytime}
     return videoData
 }
 
