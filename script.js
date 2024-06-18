@@ -16,6 +16,10 @@ function getVideoID(){
    return new URL(document.URL).searchParams.get('v')
 }
 
+function getVideoDuration(){
+    return document.getElementsByTagName("video")[0].duration
+}  
+
 function getVideoCurrentTime(){
    return document.getElementsByTagName("video")[0].currentTime
 }
