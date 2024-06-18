@@ -25,20 +25,15 @@ function getVideoCurrentTime(){
 }
 
 function getVideoPlaytime(){
+    var videoId = getVideoID()
     var videoPlaytime = []
     for(var i = 0; i < document.getElementsByTagName("video")[0].played.length; i++) { 
 	var intervalStart = document.getElementsByTagName("video")[0].played.start(i)
 	var intervalEnd = document.getElementsByTagName("video")[0].played.end(i)
 	videoPlaytime.push(intervalStart + ":" + intervalEnd)
     }
-    return videoPlaytime
-}
-
-function storeVideoPlaytime(){
-    var videoid = getVideoID()
-    var time = getVideoCurrentTime()
-    var videoPlaytime = {id: videoid, playtime: time}
-    return videoPlaytime
+    var videoData = {id: videoId, playtime: videoPlaytime}
+    return videoData
 }
 
 function checkDuplicateVideoData(){
@@ -49,7 +44,7 @@ function checkDuplicateVideoData(){
 }
 
 function aggregateVideoData(){
-    videoData.push(storeVideoPlaytime())
+    videoData.push(getVideoPlaytime())
 }
 
 function setLocalStorage(data){
