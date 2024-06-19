@@ -52,8 +52,9 @@ function backupVideoData(data){
    localStorage.setItem('watchd', data);
 }
 
-setInterval (function main(){
-  if (!checkDuplicateVideoData()){
-	storeVideoData()
-  }
-}, 5000);
+function main(){
+    playingChecker()
+    pausedChecker()
+}
+
+main()
