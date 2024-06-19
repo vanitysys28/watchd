@@ -38,11 +38,10 @@ function getVideoPlaytime(){
 }
 
 function checkDuplicateVideoData(){
-    var index = videoData.findIndex(video => videoid = getVideoID())
+    var index = videoData.findIndex(video => video.id == getVideoID())
     if (index !== -1) {
 	return true
     }
-    return false
 }
 
 function storeVideoData(){
