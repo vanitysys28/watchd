@@ -1,4 +1,4 @@
-var videoData = []
+var videoDataCollection = []
 
 function playingChecker(){
 document.getElementsByTagName("video")[0].addEventListener('play', () => {
@@ -38,14 +38,14 @@ function getVideoPlaytime(){
 }
 
 function checkDuplicateVideoData(){
-    var index = videoData.findIndex(video => video.id == getVideoID())
+    var index = videoDataCollection.findIndex(video => video.id == getVideoID())
     if (index !== -1) {
 	return true
     }
 }
 
 function storeVideoData(){
-    videoData.push(getVideoPlaytime())
+    videoDataCollection.push(getVideoPlaytime())
 }
 
 function backupVideoData(data){
