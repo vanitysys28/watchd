@@ -1,18 +1,18 @@
 var videoData = []
 
-function pausedChecker(){
-document.getElementsByTagName("video")[0].addEventListener('pause', () => {
-    if (!checkDuplicateVideoData()){
-	storeVideoData()
-    };
-})
-}
-
 function playingChecker(){
 document.getElementsByTagName("video")[0].addEventListener('play', () => {
  if (!checkDuplicateVideoData()){
 	storeVideoData()
     };
+})
+}
+
+function pausedChecker(){
+document.getElementsByTagName("video")[0].addEventListener('pause', () => {
+    if (!checkDuplicateVideoData()){
+	storeVideoData()
+   };
 })
 }
 
@@ -27,9 +27,9 @@ function getVideoDuration(){
 function getVideoPlaytime(){
     var videoPlaytime = []
     
-    for(var i = 0; i < document.getElementsByTagName("video")[0].played.length; i++) { 
-	var intervalStart = document.getElementsByTagName("video")[0].played.start(i)
-	var intervalEnd = document.getElementsByTagName("video")[0].played.end(i)
+    for(var i = 0; i < document.querySelector("video").played.length; i++) { 
+	var intervalStart = document.querySelector("video").played.start(i)
+	var intervalEnd = document.querySelector("video").played.end(i)
 	videoPlaytime.push(intervalStart + ":" + intervalEnd)
     }
     
@@ -53,9 +53,8 @@ function backupVideoData(data){
    localStorage.setItem('watchd', data);
 }
 
-function main(){
-    pausedChecker()
-    playingChecker()
-}
-
-main()
+setInterval (function main(){
+  if (!checkDuplicateVideoData()){
+	storeVideoData()
+  }
+}, 5000);
