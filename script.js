@@ -1,7 +1,7 @@
 var videoDataCollection = []
 
 function playingChecker(){
-document.getElementsByTagName("video")[0].addEventListener('play', () => {
+    document.querySelector("video").addEventListener('play', () => {
  if (!checkDuplicateVideoData()){
 	storeVideoData()
     };
@@ -9,7 +9,7 @@ document.getElementsByTagName("video")[0].addEventListener('play', () => {
 }
 
 function pausedChecker(){
-document.getElementsByTagName("video")[0].addEventListener('pause', () => {
+    document.querySelector("video").addEventListener('pause', () => {
     if (!checkDuplicateVideoData()){
 	storeVideoData()
    };
