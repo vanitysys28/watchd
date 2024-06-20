@@ -2,17 +2,15 @@ var videoDataCollection = []
 
 function playingChecker(){
     document.querySelector("video").addEventListener('play', () => {
- if (!checkDuplicateVideoData()){
+ checkDuplicateVideoData()
 	storeVideoData()
-    };
 })
 }
 
 function pausedChecker(){
     document.querySelector("video").addEventListener('pause', () => {
-    if (!checkDuplicateVideoData()){
+    checkDuplicateVideoData()
 	storeVideoData()
-   };
 })
 }
 
@@ -40,8 +38,8 @@ function getVideoPlaytime(){
 function checkDuplicateVideoData(){
     var index = videoDataCollection.findIndex(video => video.id == getVideoID())
     if (index !== -1) {
-	return true
-    }
+	videoDataCollection.splice(index, 1);
+    } 
 }
 
 function storeVideoData(){
