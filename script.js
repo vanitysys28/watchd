@@ -19,7 +19,7 @@ function getVideoID(){
 }
 
 function getVideoDuration(){
-    return document.getElementsByTagName("video")[0].duration
+    return document.querySelector("video").duration
 }  
 
 function getVideoPlaytime(){
