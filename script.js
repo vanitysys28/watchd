@@ -42,6 +42,18 @@ function checkDuplicateVideoData(){
     } 
 }
 
+function calculateVideoPlaytimePercentage(){
+    var index = videoDataCollection.findIndex(video => video.id == getVideoID())
+    var playtimeDuration = 0
+
+    for(var i = 0; i < videoDataCollection.length ; i++) { 
+	if (i == index) { 
+	     videoDataCollection[index].playtime.forEach((element) => playtimeDuration += element.split(':')[1] - element.split(':')[0]);
+	    return (playtimeDuration / getVideoDuration() * 100).toFixed(2)
+    }
+    }
+}
+
 function storeVideoData(){
     videoDataCollection.push(getVideoPlaytime())
 }
