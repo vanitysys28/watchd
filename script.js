@@ -31,8 +31,7 @@ function getSegmentsPlayed(){
 	segmentsPlayed.push(intervalStart + ":" + intervalEnd)
     }
     
-    var videoData = {id: getVideoID(), playtime: segmentsPlayed}
-    return videoData
+    return segmentsPlayed
 }
 
 function checkDuplicateVideoData(){
@@ -55,6 +54,7 @@ function calculateVideoPlaytimePercentage(){
 }
 
 function storeVideoData(){
+    var videoData = {id: getVideoID(), segments: getSegmentsPlayed()}
     videoDataCollection.push(getSegmentsPlayed())
 }
 
