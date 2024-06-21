@@ -47,7 +47,7 @@ function calculateVideoPlaytimePercentage(){
 
     for(var i = 0; i < videoDataCollection.length ; i++) { 
 	if (i == index) { 
-	     videoDataCollection[index].playtime.forEach((element) => playtimeDuration += element.split(':')[1] - element.split(':')[0]);
+	     videoDataCollection[index].segments.forEach((element) => playtimeDuration += element.split(':')[1] - element.split(':')[0]);
 	    return (playtimeDuration / getVideoDuration() * 100).toFixed(2)
     }
     }
