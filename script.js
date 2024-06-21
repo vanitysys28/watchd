@@ -22,16 +22,16 @@ function getVideoDuration(){
     return document.querySelector("video").duration
 }  
 
-function getVideoPlaytime(){
-    var videoPlaytime = []
+function getSegmentsPlayed(){
+    var segmentsPlayed = []
     
     for(var i = 0; i < document.querySelector("video").played.length; i++) { 
 	var intervalStart = document.querySelector("video").played.start(i)
 	var intervalEnd = document.querySelector("video").played.end(i)
-	videoPlaytime.push(intervalStart + ":" + intervalEnd)
+	segmentsPlayed.push(intervalStart + ":" + intervalEnd)
     }
     
-    var videoData = {id: getVideoID(), playtime: videoPlaytime}
+    var videoData = {id: getVideoID(), playtime: segmentsPlayed}
     return videoData
 }
 
@@ -55,7 +55,7 @@ function calculateVideoPlaytimePercentage(){
 }
 
 function storeVideoData(){
-    videoDataCollection.push(getVideoPlaytime())
+    videoDataCollection.push(getSegmentsPlayed())
 }
 
 function backupVideoData(data){
