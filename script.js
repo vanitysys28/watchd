@@ -55,7 +55,7 @@ function calculateVideoPlaytimePercentage(){
 
 function storeVideoData(){
     var videoData = {id: getVideoID(), segments: getSegmentsPlayed()}
-    videoDataCollection.push(getSegmentsPlayed())
+    videoDataCollection.push(videoData)
 }
 
 function backupVideoData(data){
