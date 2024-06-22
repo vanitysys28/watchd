@@ -2,7 +2,7 @@ var videoDataCollection = []
 
 function playingChecker(){
     document.querySelector("video").addEventListener('play', () => {
- checkDuplicateVideoData()
+	checkDuplicateVideoData()
 	storeVideoData()
 	backupVideoData(JSON.stringify(videoDataCollection))
 })
@@ -10,7 +10,7 @@ function playingChecker(){
 
 function pausedChecker(){
     document.querySelector("video").addEventListener('pause', () => {
-    checkDuplicateVideoData()
+	checkDuplicateVideoData()
 	storeVideoData()
 	backupVideoData(JSON.stringify(videoDataCollection))
 })
@@ -64,7 +64,12 @@ function backupVideoData(data){
    localStorage.setItem('watchd', data);
 }
 
+function fetchLocalStorage(){
+   videoDataCollection = JSON.parse(localStorage.getItem("watchd"))
+}
+
 function main(){
+    fetchLocalStorage()
     playingChecker()
     pausedChecker()
 }
