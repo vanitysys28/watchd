@@ -43,20 +43,15 @@ function checkDuplicateVideoData(){
     } 
 }
 
-function calculateVideoPlaytimePercentage(){
-    var index = videoDataCollection.findIndex(video => video.id == getVideoID())
+function calculateVideoPlaytimePercentage(segments){
     var playtimeDuration = 0
-
-    for(var i = 0; i < videoDataCollection.length ; i++) { 
-	if (i == index) { 
-	     videoDataCollection[index].segments.forEach((element) => playtimeDuration += element.split(':')[1] - element.split(':')[0]);
+	    segments.forEach((segment) => playtimeDuration += segment.split(':')[1] - segment.split(':')[0]);
 	    return (playtimeDuration / getVideoDuration() * 100).toFixed(2)
-    }
-    }
 }
 
 function storeVideoData(){
     var videoData = {id: getVideoID(), segments: getSegmentsPlayed()}
+    videoData.viewed = calculateVideoPlaytimePercentage(videoData.segments)
     videoDataCollection.push(videoData)
 }
 
