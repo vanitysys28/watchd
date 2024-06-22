@@ -65,7 +65,10 @@ function backupVideoData(data){
 }
 
 function fetchLocalStorage(){
-   videoDataCollection = JSON.parse(localStorage.getItem("watchd"))
+    if (JSON.parse(localStorage.getItem("watchd"))) {
+videoDataCollection = JSON.parse(localStorage.getItem("watchd"))
+    }
+   
 }
 
 function main(){
