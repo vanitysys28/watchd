@@ -30,7 +30,7 @@ function getSegmentsPlayed() {
     for (var i = 0; i < document.querySelector("video").played.length; i++) {
         var intervalStart = document.querySelector("video").played.start(i)
         var intervalEnd = document.querySelector("video").played.end(i)
-        segmentsPlayed.push(intervalStart + ":" + intervalEnd)
+        segmentsPlayed.push({start: intervalStart, end: intervalEnd})
     }
 
     return segmentsPlayed
@@ -45,7 +45,7 @@ function checkDuplicateVideoData() {
 
 function calculateVideoPlaytimePercentage(segments) {
     var playtimeDuration = 0
-    segments.forEach((segment) => playtimeDuration += segment.split(':')[1] - segment.split(':')[0]);
+    segments.forEach((segment) => playtimeDuration += segment.end - segment.start);
     return (playtimeDuration / getVideoDuration() * 100).toFixed(2)
 }
 
