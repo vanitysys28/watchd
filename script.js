@@ -37,8 +37,8 @@ function getSegmentsPlayed() {
 }
 
 function checkDuplicateVideoData() {
-    var index = getDuplicateVideoDataIndex()
-    if (index !== -1) {
+    var videoIndex = getDuplicateVideoDataIndex()
+    if (videoIndex !== -1) {
 	return true
     }
 }
