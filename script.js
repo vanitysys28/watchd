@@ -37,10 +37,14 @@ function getSegmentsPlayed() {
 }
 
 function checkDuplicateVideoData() {
-    var index = videoDataCollection.findIndex(video => video.id == getVideoID())
+    var index = getDuplicateVideoDataIndex()
     if (index !== -1) {
-        videoDataCollection.splice(index, 1);
+	return true
     }
+}
+
+function getDuplicateVideoDataIndex() {
+    return videoDataCollection.findIndex(video => video.id == getVideoID())
 }
 
 function calculateVideoPlaytimePercentage(segments) {
