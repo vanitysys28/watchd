@@ -54,12 +54,21 @@ function calculateVideoPlaytimePercentage(segments) {
 }
 
 function storeVideoData() {
-    var videoData = {
-        id: getVideoID(),
-        segments: getSegmentsPlayed()
+    if (!checkDuplicateVideoData) {
+	var videoData = {
+            id: getVideoID(),
+            segments: getSegmentsPlayed()
+	}
+	videoData.viewed = calculateVideoPlaytimePercentage(videoData.segments)
+	videoDataCollection.push(videoData)
     }
-    videoData.viewed = calculateVideoPlaytimePercentage(videoData.segments)
-    videoDataCollection.push(videoData)
+
+    if (checkDuplicateVideoData) {
+	var videoIndex = getDuplicateVideoDataIndex()
+	videoDataCollection[videoIndex].segments = getSegmentsPlayed()
+	videoDataCollection[videoIndex].viewed = calculateVideoPlaytimePercentage(videoDataCollection[videoIndex].segments)
+    }
+}
 }
 
 function backupVideoData(data) {
