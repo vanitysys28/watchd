@@ -69,7 +69,6 @@ function storeVideoData() {
 	videoDataCollection[videoIndex].viewed = calculateVideoPlaytimePercentage(videoDataCollection[videoIndex].segments)
     }
 }
-}
 
 function backupVideoData(data) {
     localStorage.setItem('watchd', data);
@@ -79,10 +78,19 @@ function fetchLocalStorage() {
     if (JSON.parse(localStorage.getItem("watchd"))) {
         videoDataCollection = JSON.parse(localStorage.getItem("watchd"))
     }
+}
 
+function injectButton() {
+var injectedButton = document.createElement("button")
+injectedButton.id = "playtime"
+injectedButton.classList.add("yt-spec-button-shape-next", "yt-spec-button-shape-next--tonal", "yt-spec-button-shape-next--mono", "yt-spec-button-shape-next--size-m", "yt-spec-button-shape-next--icon-button")
+    injectedButton.style ="margin-left: 10px;"
+
+document.getElementById("owner").appendChild(injectedButton)
 }
 
 function main() {
+    injectButton()
     fetchLocalStorage()
     playingChecker()
     pausedChecker()
