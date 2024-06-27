@@ -7,7 +7,9 @@
     {
       "js": ["script.js"],
       "matches": [
-        "https://youtube.com/*"
+          "https://youtube.com/*",
+	  "https://www.youtube.com/*"
+
       ]
     }
   ]
