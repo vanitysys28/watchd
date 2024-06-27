@@ -90,13 +90,20 @@ function fetchLocalStorage() {
 }
 
 function injectButton() {
-var injectedButton = document.createElement("button")
-injectedButton.id = "playtime"
-injectedButton.classList.add("yt-spec-button-shape-next", "yt-spec-button-shape-next--tonal", "yt-spec-button-shape-next--mono", "yt-spec-button-shape-next--size-m", "yt-spec-button-shape-next--icon-button")
-    injectedButton.style ="margin-left: 10px;"
 
-document.getElementById("owner").appendChild(injectedButton)
+    var elementCheck = setInterval(function() {
+        if (document.getElementById("owner")) {
+            var injectedButton = document.createElement("button")
+            injectedButton.id = "playtime"
+            injectedButton.classList.add("yt-spec-button-shape-next", "yt-spec-button-shape-next--tonal", "yt-spec-button-shape-next--mono", "yt-spec-button-shape-next--size-m", "yt-spec-button-shape-next--icon-button")
+            injectedButton.style = "margin-left: 10px;"
+
+            document.getElementById("owner").appendChild(injectedButton)
+            clearInterval(elementCheck);
+        }
+    }, 500);
 }
+
 
 function main() {
     injectButton()
