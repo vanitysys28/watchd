@@ -37,13 +37,13 @@ function getSegmentsPlayed() {
 }
 
 function checkDuplicateVideoData() {
-    var videoIndex = getDuplicateVideoDataIndex()
+    var videoIndex = getVideoDataIndex()
     if (videoIndex !== -1) {
 	return true
     }
 }
 
-function getDuplicateVideoDataIndex() {
+function getVideoDataIndex() {
     return videoDataCollection.findIndex(video => video.id == getVideoID())
 }
 
@@ -64,7 +64,7 @@ function storeVideoData() {
     }
 
     if (checkDuplicateVideoData) {
-	var videoIndex = getDuplicateVideoDataIndex()
+	var videoIndex = getVideoDataIndex()
 	videoDataCollection[videoIndex].segments = getSegmentsPlayed()
 	videoDataCollection[videoIndex].viewed = calculateVideoPlaytimePercentage(videoDataCollection[videoIndex].segments)
     }
