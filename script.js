@@ -53,6 +53,17 @@ function calculateVideoPlaytimePercentage(segments) {
     return (playtimeDuration / getVideoDuration() * 100).toFixed(2)
 }
 
+function fetchVideoPlaytimePercentage() {
+    if (getVideoDataIndex() == -1){
+	document.getElementById("playtime").innerHTML = 0%
+    }
+
+    if (getVideoDataIndex() !== -1) {
+	var videoIndex = getVideoDataIndex()
+	document.getElementById("playtime").innerHTML = videoDataCollection[videoIndex].viewed + "%"
+    }
+}
+
 function storeVideoData() {
     if (!checkDuplicateVideoData) {
 	var videoData = {
