@@ -4,6 +4,7 @@ function playingChecker() {
     document.querySelector("video").addEventListener('play', () => {
         checkDuplicateVideoData()
         storeVideoData()
+	fetchVideoPlaytimePercentage()
         backupVideoData(JSON.stringify(videoDataCollection))
     })
 }
@@ -12,6 +13,7 @@ function pausedChecker() {
     document.querySelector("video").addEventListener('pause', () => {
         checkDuplicateVideoData()
         storeVideoData()
+	fetchVideoPlaytimePercentage()
         backupVideoData(JSON.stringify(videoDataCollection))
     })
 }
@@ -54,12 +56,10 @@ function calculateVideoPlaytimePercentage(segments) {
 }
 
 function fetchVideoPlaytimePercentage() {
-    if (getVideoDataIndex() == -1){
-	document.getElementById("playtime").innerHTML = 0%
-    }
-
-    if (getVideoDataIndex() !== -1) {
-	var videoIndex = getVideoDataIndex()
+    var videoIndex = getVideoDataIndex()
+    if (videoIndex == -1) {
+	document.getElementById("playtime").innerHTML = "0%"
+    } else {
 	document.getElementById("playtime").innerHTML = videoDataCollection[videoIndex].viewed + "%"
     }
 }
