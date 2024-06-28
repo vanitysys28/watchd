@@ -65,7 +65,7 @@ function fetchVideoPlaytimePercentage() {
 }
 
 function storeVideoData() {
-    if (!checkDuplicateVideoData) {
+    if (!checkDuplicateVideoData()) {
 	var videoData = {
             id: getVideoID(),
             segments: getSegmentsPlayed()
@@ -74,7 +74,7 @@ function storeVideoData() {
 	videoDataCollection.push(videoData)
     }
 
-    if (checkDuplicateVideoData) {
+    if (checkDuplicateVideoData()) {
 	var videoIndex = getVideoDataIndex()
 	videoDataCollection[videoIndex].segments = getSegmentsPlayed()
 	videoDataCollection[videoIndex].viewed = calculateVideoPlaytimePercentage(videoDataCollection[videoIndex].segments)
