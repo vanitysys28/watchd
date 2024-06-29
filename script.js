@@ -72,7 +72,8 @@ function storeVideoData() {
 	videoData.viewed = calculateVideoPlaytimePercentage(videoData.segments)
 	videoDataCollection.push(videoData)
     }
-
+    
+    
     if (checkDuplicateVideoData()) {
 	var videoIndex = getVideoDataIndex()
 	videoDataCollection[videoIndex].segments = getSegmentsPlayed()
@@ -80,7 +81,7 @@ function storeVideoData() {
     }
 }
 
-function checkOverlap(range) {
+    function checkOverlap(segment,range) {
      if (segment.start < range.start && segment.end > range.start || 
   segment.start < range.end && segment.end > range.end || 
   segment.start > range.start && segment.end < range.end ||
