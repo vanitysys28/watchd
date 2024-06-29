@@ -4,7 +4,6 @@ function playingChecker() {
     document.querySelector("video").addEventListener('play', () => {
         checkDuplicateVideoData()
         storeVideoData()
-	fetchVideoPlaytimePercentage()
         backupVideoData(JSON.stringify(videoDataCollection))
     })
 }
