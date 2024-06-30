@@ -82,9 +82,9 @@ function storeVideoData() {
 }
 
     function checkOverlap(segment,range) {
-     if (segment.start < range.start && segment.end > range.start || 
-  segment.start < range.end && segment.end > range.end || 
-  segment.start > range.start && segment.end < range.end ||
+     if (segment.start <= range.start && segment.end >= range.start || 
+  segment.start <= range.end && segment.end >= range.end || 
+  segment.start >= range.start && segment.end <= range.end ||
 	 segment.start <= range.start && segment.end >= range.end) {
 	 return true
       }
