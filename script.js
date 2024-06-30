@@ -76,7 +76,24 @@ function storeVideoData() {
     
     if (checkDuplicateVideoData()) {
 	var videoIndex = getVideoDataIndex()
-	videoDataCollection[videoIndex].segments = getSegmentsPlayed()
+	var segmentsPlayed = getSegmentsPlayed()
+	for (i = 0; i < segmentsPlayed.length; i++) {
+	    var isOverlapping = false;
+	    for (j = 0; j < videoDataCollection[videoIndex].segments.length; j++) {
+		 if(checkOverlap(segmentsPlayed[i],videoDataCollection[videoIndex].segments[j])) {
+		     videoDataCollection[videoIndex].segments[j] = {
+			 "start": Math.min(segmentsPlayed[i].start,videoDataCollection[videoIndex].segments[j].start),
+			 "end": Math.max(segmentsPlayed[i].end,videoDataCollection[videoIndex].segments[j].end)
+		     }
+		     isOverlapping = true;
+            break;
+		 }
+	    }
+	if (!isOverlapping) {
+        videoDataCollection[videoIndex].segments.push(segmentsPlayed[j]);
+	}
+	}
+	videoDataCollection[videoIndex].segments.sort((a, b) => a.start - b.start);
 	videoDataCollection[videoIndex].viewed = calculateVideoPlaytimePercentage(videoDataCollection[videoIndex].segments)
     }
 }
