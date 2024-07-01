@@ -2,7 +2,8 @@ var videoDataCollection = []
 
 function playingChecker() {
     document.querySelector("video").addEventListener('play', () => {
-        storeVideoData()
+	fetchVideoPlaytimePercentage()
+	storeVideoData()
         backupVideoData(JSON.stringify(videoDataCollection))
     })
 }
