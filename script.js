@@ -2,7 +2,6 @@ var videoDataCollection = []
 
 function playingChecker() {
     document.querySelector("video").addEventListener('play', () => {
-        checkDuplicateVideoData()
         storeVideoData()
         backupVideoData(JSON.stringify(videoDataCollection))
     })
@@ -10,7 +9,6 @@ function playingChecker() {
 
 function pausedChecker() {
     document.querySelector("video").addEventListener('pause', () => {
-        checkDuplicateVideoData()
         storeVideoData()
 	fetchVideoPlaytimePercentage()
         backupVideoData(JSON.stringify(videoDataCollection))
