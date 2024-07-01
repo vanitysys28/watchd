@@ -70,31 +70,50 @@ function storeVideoData() {
 	videoData.viewed = calculateVideoPlaytimePercentage(videoData.segments)
 	videoDataCollection.push(videoData)
     }
-    
-    
-    if (checkDuplicateVideoData()) {
-	var videoIndex = getVideoDataIndex()
-	var segmentsPlayed = getSegmentsPlayed()
-	for (i = 0; i < segmentsPlayed.length; i++) {
-	    var isOverlapping = false;
-	    for (j = 0; j < videoDataCollection[videoIndex].segments.length; j++) {
-		 if(checkOverlap(segmentsPlayed[i],videoDataCollection[videoIndex].segments[j])) {
-		     videoDataCollection[videoIndex].segments[j] = {
-			 "start": Math.min(segmentsPlayed[i].start,videoDataCollection[videoIndex].segments[j].start),
-			 "end": Math.max(segmentsPlayed[i].end,videoDataCollection[videoIndex].segments[j].end)
-		     }
-		     isOverlapping = true;
-            break;
-		 }
-	    }
-	if (!isOverlapping) {
-        videoDataCollection[videoIndex].segments.push(segmentsPlayed[j]);
-	}
-	}
-	videoDataCollection[videoIndex].segments.sort((a, b) => a.start - b.start);
-	videoDataCollection[videoIndex].viewed = calculateVideoPlaytimePercentage(videoDataCollection[videoIndex].segments)
+
+	    if (checkDuplicateVideoData()) {
+    var videoIndex = getVideoDataIndex();
+    var segmentsPlayed = getSegmentsPlayed();
+
+    for (var i = 0; i < segmentsPlayed.length; i++) {
+        var isOverlapping = false;
+        for (var j = 0; j < videoDataCollection[videoIndex].segments.length; j++) {
+            if (checkOverlap(segmentsPlayed[i], videoDataCollection[videoIndex].segments[j])) {
+                videoDataCollection[videoIndex].segments[j] = {
+                    "start": Math.min(segmentsPlayed[i].start, videoDataCollection[videoIndex].segments[j].start),
+                    "end": Math.max(segmentsPlayed[i].end, videoDataCollection[videoIndex].segments[j].end)
+                };
+                isOverlapping = true;
+                break;
+            }
+        }
+        if (!isOverlapping) {
+            videoDataCollection[videoIndex].segments.push(segmentsPlayed[i]);
+        }
     }
+
+    videoDataCollection[videoIndex].segments.sort((a, b) => a.start - b.start);
+
+    var mergedSegments = [];
+    if (videoDataCollection[videoIndex].segments.length > 0) {
+        var currentSegment = videoDataCollection[videoIndex].segments[0];
+
+        for (var k = 1; k < videoDataCollection[videoIndex].segments.length; k++) {
+            var nextSegment = videoDataCollection[videoIndex].segments[k];
+            if (currentSegment.end >= nextSegment.start) {
+                currentSegment.end = Math.max(currentSegment.end, nextSegment.end);
+            } else {
+                mergedSegments.push(currentSegment);
+                currentSegment = nextSegment;
+            }
+        }
+        mergedSegments.push(currentSegment);
+    }
+
+    videoDataCollection[videoIndex].segments = mergedSegments;
+    videoDataCollection[videoIndex].viewed = calculateVideoPlaytimePercentage(videoDataCollection[videoIndex].segments);
 }
+	}
 
     function checkOverlap(segment,range) {
      if (segment.start <= range.start && segment.end >= range.start || 
@@ -116,7 +135,6 @@ function fetchLocalStorage() {
 }
 
 function injectButton() {
-
     var elementCheck = setInterval(function() {
         if (document.getElementById("owner")) {
             var injectedButton = document.createElement("button")
