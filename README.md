@@ -17,7 +17,7 @@ The extension isn't available to install from the Chrome Web Store yet.<br>
 <br>
 To install it, please follow these instructions:
 1. Clone this git repository
-2. Navigate to <chrome://extensions>
+2. Navigate to `chrome://extensions`
 3. Enable developer mode
 4. Load the unpacked extension by locating the previously cloned repository
 
