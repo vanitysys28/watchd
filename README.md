@@ -13,7 +13,7 @@ The data is stored in browser localstorage, and can't unfortunately be shared ac
 
 ## Installation
 
-The extension isn't avilable to install from the Chrome Web Store yet.<br>
+The extension isn't available to install from the Chrome Web Store yet.<br>
 <br>
 To install it, please follow these instructions:
 1. Clone this git repository
