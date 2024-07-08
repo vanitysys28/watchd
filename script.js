@@ -16,6 +16,16 @@ function pausedChecker() {
     })
 }
 
+function endedChecker() {
+    document.querySelector("video").addEventListener('ended', () => {
+        storeVideoData()
+	fetchVideoPlaytimePercentage()
+	setVideoEndedStatus()
+	fetchVideoEndedStatus()
+        backupVideoData(JSON.stringify(videoDataCollection))
+    })
+}
+
 function getVideoID() {
     return new URL(document.URL).searchParams.get('v')
 }
