@@ -62,6 +62,17 @@ function fetchVideoPlaytimePercentage() {
     }
 }
 
+function setVideoEndedStatus() {
+    var videoIndex = getVideoDataIndex();
+    videoDataCollection[videoIndex].ended = true
+}
+
+function fetchVideoEndedStatus() {
+    var videoIndex = getVideoDataIndex()
+    if (videoIndex !== -1 && videoDataCollection[videoIndex].ended == true) {
+	document.getElementById("playtime").innerHTML += " ✓"
+}
+
 function storeVideoData() {
     if (!checkDuplicateVideoData()) {
 	var videoData = {
@@ -116,7 +127,7 @@ function storeVideoData() {
 }
 	}
 
-    function checkOverlap(segment,range) {
+function checkOverlap(segment,range) {
      if (segment.start <= range.start && segment.end >= range.start || 
   segment.start <= range.end && segment.end >= range.end || 
   segment.start >= range.start && segment.end <= range.end ||
