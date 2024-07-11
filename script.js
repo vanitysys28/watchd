@@ -4,6 +4,7 @@ function playingChecker() {
     document.querySelector("video").addEventListener('play', () => {
 	fetchVideoPlaytimePercentage()
 	storeVideoData()
+	fetchVideoEndedStatus()
         backupVideoData(JSON.stringify(videoDataCollection))
     })
 }
@@ -12,6 +13,7 @@ function pausedChecker() {
     document.querySelector("video").addEventListener('pause', () => {
         storeVideoData()
 	fetchVideoPlaytimePercentage()
+	fetchVideoEndedStatus()
         backupVideoData(JSON.stringify(videoDataCollection))
     })
 }
