@@ -178,6 +178,7 @@ function main() {
     fetchLocalStorage()
     playingChecker()
     pausedChecker()
+    endedChecker()
 }
 
 main()
