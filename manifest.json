@@ -1,20 +1,20 @@
 {
-  "manifest_version": 3,
-  "name": "Watchd",
-  "description": "Extension to track which videos were viewed or not",
-  "version": "1.0",
-  "content_scripts": [
-    {
-      "js": ["script.js"],
-      "matches": [
-          "https://youtube.com/*",
-	  "https://www.youtube.com/*"
+    "manifest_version": 3,
+    "name": "Watchd",
+    "description": "Keep track of your video watch time on YouTube, monitoring viewing progress by percentage.",
+    "version": "1.0",
     "icons": {
 	"128": "icon128.png"
     },
+    "content_scripts": [
+	{
+	    "js": ["script.js"],
+	    "matches": [
+		"https://youtube.com/*",
+		"https://www.youtube.com/*"
 
-      ]
-    }
-  ]
+	    ]
+	}
+    ]
 }
-  
+
