@@ -1,4 +1,8 @@
-# Watchd
+<p align="center">
+  <img src="https://github.com/vanitysys28/watchd/blob/main/icon128.png"/>
+</p>
+
+# watchd 
 
 ## Description
 
