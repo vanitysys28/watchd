@@ -9,11 +9,14 @@
 This extension was created in order to fix a common issue people binge-watching on YouTube might have faced.<br>
 <br>
 The purpose is to inject a button in current YouTube UI to keep track of the watchtime on a per video basis.<br>
-Watchtime is displayed in percentage, and is updated everytime the video is played from paused state, or paused.<br>
-<br>
-A tick symbol is also added to the button when the end of the video was reached, independant of the video watchtime.<br>
+Watchtime is displayed in percentage.<br>
 <br>
 The data is stored in browser localstorage, and can't unfortunately be shared across devices yet.<br>
+
+## Features
+- Injecting button next to Subscribe button
+- Displaying watchtime in percentage when video is played, paused, or reached end of playback
+- Displaying a tick when the video reached the end, independantly of the total watchtime
 
 ## Installation
 
