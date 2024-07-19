@@ -178,9 +178,8 @@ function injectButton() {
 function main() {
     injectButton()
     fetchLocalStorage()
-    playingChecker()
-    pausedChecker()
-    endedChecker()
+    videoActivityChecker()
+    videoEndedChecker()
 }
 
 main()
