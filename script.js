@@ -57,17 +57,20 @@ function getVideoDataIndex() {
 }
 
 function calculateVideoPlaytimePercentage(segments) {
-    var playtimeDuration = 0
+    var playtimeDuration = 0;
     segments.forEach((segment) => playtimeDuration += segment.end - segment.start);
-    return (playtimeDuration / getVideoDuration() * 100).toFixed(2)
+    var videoDuration = getVideoDuration();
+    return videoDuration ? (playtimeDuration / videoDuration * 100).toFixed(2) : "0";
 }
 
 function fetchVideoPlaytimePercentage() {
     var videoIndex = getVideoDataIndex()
-    if (videoIndex == -1) {
-	document.getElementById("playtime").innerHTML = "0%"
-    } else {
-	document.getElementById("playtime").innerHTML = videoDataCollection[videoIndex].viewed + "%"
+    if (document.getElementById("playtime")) {
+	if (videoIndex == -1) {
+	    document.getElementById("playtime").innerHTML = "0%"
+	} else {
+	    document.getElementById("playtime").innerHTML = videoDataCollection[videoIndex].viewed + "%"
+	}
     }
 }
 
