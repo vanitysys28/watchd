@@ -15,7 +15,8 @@ The data is stored in browser localstorage, and can't unfortunately be shared ac
 
 ## Features
 - Injecting button next to Subscribe button
-- Displaying watchtime in percentage when video is played, paused, or reached end of playback
+- Displaying watchtime in percentage in previously injected button
+- Updating watchtime everytime the `timeupdate` event is fired
 - Displaying a tick when the video reached the end, independantly of the total watchtime
 
 ## Installation
