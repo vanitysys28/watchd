@@ -29,7 +29,8 @@ function getVideoID() {
 }
 
 function getVideoDuration() {
-    return document.querySelector("video").duration
+    var video = document.querySelector("video");
+    return video ? video.duration : 0;
 }
 
 function getSegmentsPlayed() {
