@@ -14,7 +14,7 @@ function videoActivityChecker() {
 	}}, 500);
 }
 
-function endedChecker() {
+function videoEndedChecker() {
     document.querySelector("video").addEventListener('ended', () => {
         storeVideoData()
 	fetchVideoPlaytimePercentage()
