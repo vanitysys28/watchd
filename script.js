@@ -1,21 +1,17 @@
 var videoDataCollection = []
 
-function playingChecker() {
-    document.querySelector("video").addEventListener('play', () => {
-	fetchVideoPlaytimePercentage()
-	storeVideoData()
-	fetchVideoEndedStatus()
-        backupVideoData(JSON.stringify(videoDataCollection))
-    })
-}
-
-function pausedChecker() {
-    document.querySelector("video").addEventListener('pause', () => {
-        storeVideoData()
-	fetchVideoPlaytimePercentage()
-	fetchVideoEndedStatus()
-        backupVideoData(JSON.stringify(videoDataCollection))
-    })
+function videoActivityChecker() {
+    var elementCheck = setInterval(function() {
+	var video =  document.querySelector("video")
+	if (video) {
+	    video.addEventListener('timeupdate', () => {
+		storeVideoData()
+		fetchVideoPlaytimePercentage()
+		fetchVideoEndedStatus()
+		backupVideoData(JSON.stringify(videoDataCollection))
+	    })
+	    clearInterval(elementCheck);
+	}}, 500);
 }
 
 function endedChecker() {
