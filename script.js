@@ -2,26 +2,36 @@ var videoDataCollection = []
 
 function videoActivityChecker() {
     var elementCheck = setInterval(function() {
-	var video =  document.querySelector("video")
-	if (video) {
-	    video.addEventListener('timeupdate', () => {
-		storeVideoData()
-		fetchVideoPlaytimePercentage()
-		fetchVideoEndedStatus()
-		backupVideoData(JSON.stringify(videoDataCollection))
-	    })
-	    clearInterval(elementCheck);
-	}}, 500);
+        var video = document.querySelector("video");
+        if (video) {
+            console.log("Video element found. Attaching timeupdate listener.");
+            video.addEventListener('timeupdate', () => {
+                storeVideoData();
+                fetchVideoPlaytimePercentage();
+                fetchVideoEndedStatus();
+                backupVideoData(JSON.stringify(videoDataCollection));
+            });
+            clearInterval(elementCheck);
+        } else {
+            console.log("Video element not found. Retrying...");
+        }
+    }, 500);
 }
 
 function videoEndedChecker() {
-    document.querySelector("video").addEventListener('ended', () => {
-        storeVideoData()
-	fetchVideoPlaytimePercentage()
-	setVideoEndedStatus()
-	fetchVideoEndedStatus()
-        backupVideoData(JSON.stringify(videoDataCollection))
-    })
+    var videoCheck = setInterval(function() {
+        var video = document.querySelector("video");
+        if (video) {
+            video.addEventListener('ended', () => {
+                storeVideoData();
+                fetchVideoPlaytimePercentage();
+                setVideoEndedStatus();
+                fetchVideoEndedStatus();
+                backupVideoData(JSON.stringify(videoDataCollection));
+            });
+            clearInterval(videoCheck);
+        }
+    }, 500);
 }
 
 function getVideoID() {
