@@ -4,7 +4,6 @@ function videoActivityChecker() {
     var elementCheck = setInterval(function() {
         var video = document.querySelector("video");
         if (video) {
-            console.log("Video element found. Attaching timeupdate listener.");
             video.addEventListener('timeupdate', () => {
                 storeVideoData();
                 fetchVideoPlaytimePercentage();
