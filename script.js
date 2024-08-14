@@ -1,8 +1,8 @@
-var videoDataCollection = []
+let videoDataCollection = []
 
 function videoActivityChecker() {
-    var elementCheck = setInterval(function() {
-        var video = document.querySelector("video");
+    let elementCheck = setInterval(function() {
+        const video = document.querySelector("video");
         if (video) {
             video.addEventListener('timeupdate', () => {
                 storeVideoData();
@@ -18,8 +18,8 @@ function videoActivityChecker() {
 }
 
 function videoEndedChecker() {
-    var videoCheck = setInterval(function() {
-        var video = document.querySelector("video");
+    let videoCheck = setInterval(function() {
+        const video = document.querySelector("video");
         if (video) {
             video.addEventListener('ended', () => {
                 storeVideoData();
@@ -38,16 +38,16 @@ function getVideoID() {
 }
 
 function getVideoDuration() {
-    var video = document.querySelector("video");
+    const video = document.querySelector("video");
     return video ? video.duration : 0;
 }
 
 function getSegmentsPlayed() {
-    var segmentsPlayed = []
+    let segmentsPlayed = []
 
-    for (var i = 0; i < document.querySelector("video").played.length; i++) {
-        var intervalStart = document.querySelector("video").played.start(i)
-        var intervalEnd = document.querySelector("video").played.end(i)
+    for (let i = 0; i < document.querySelector("video").played.length; i++) {
+        const intervalStart = document.querySelector("video").played.start(i)
+        const intervalEnd = document.querySelector("video").played.end(i)
         segmentsPlayed.push({start: intervalStart, end: intervalEnd})
     }
 
@@ -55,7 +55,7 @@ function getSegmentsPlayed() {
 }
 
 function checkDuplicateVideoData() {
-    var videoIndex = getVideoDataIndex()
+    const videoIndex = getVideoDataIndex()
     if (videoIndex !== -1) {
 	return true
     }
@@ -66,14 +66,14 @@ function getVideoDataIndex() {
 }
 
 function calculateVideoPlaytimePercentage(segments) {
-    var playtimeDuration = 0;
+    let playtimeDuration = 0;
     segments.forEach((segment) => playtimeDuration += segment.end - segment.start);
-    var videoDuration = getVideoDuration();
+    const videoDuration = getVideoDuration();
     return videoDuration ? (playtimeDuration / videoDuration * 100).toFixed(2) : "0";
 }
 
 function fetchVideoPlaytimePercentage() {
-    var videoIndex = getVideoDataIndex()
+    const videoIndex = getVideoDataIndex()
     if (document.getElementById("playtime")) {
 	if (videoIndex == -1) {
 	    document.getElementById("playtime").innerHTML = "0%"
@@ -84,12 +84,12 @@ function fetchVideoPlaytimePercentage() {
 }
 
 function setVideoEndedStatus() {
-    var videoIndex = getVideoDataIndex();
+    const videoIndex = getVideoDataIndex();
     videoDataCollection[videoIndex].ended = true
 }
 
 function fetchVideoEndedStatus() {
-    var videoIndex = getVideoDataIndex()
+    const videoIndex = getVideoDataIndex()
     if (videoIndex !== -1 && videoDataCollection[videoIndex].ended == true) {
 	document.getElementById("playtime").innerHTML += " ✓"
     }
@@ -97,7 +97,7 @@ function fetchVideoEndedStatus() {
 
 function storeVideoData() {
     if (!checkDuplicateVideoData()) {
-	var videoData = {
+	const videoData = {
 	    id: getVideoID(),
 	    segments: getSegmentsPlayed()
 	}
@@ -106,12 +106,12 @@ function storeVideoData() {
     }
 
     if (checkDuplicateVideoData()) {
-	var videoIndex = getVideoDataIndex();
-	var segmentsPlayed = getSegmentsPlayed();
+	const videoIndex = getVideoDataIndex();
+	const segmentsPlayed = getSegmentsPlayed();
 
-	for (var i = 0; i < segmentsPlayed.length; i++) {
-	    var isOverlapping = false;
-	    for (var j = 0; j < videoDataCollection[videoIndex].segments.length; j++) {
+	for (let i = 0; i < segmentsPlayed.length; i++) {
+	    let isOverlapping = false;
+	    for (let j = 0; j < videoDataCollection[videoIndex].segments.length; j++) {
 		if (checkOverlap(segmentsPlayed[i], videoDataCollection[videoIndex].segments[j])) {
 		    videoDataCollection[videoIndex].segments[j] = {
 			"start": Math.min(segmentsPlayed[i].start, videoDataCollection[videoIndex].segments[j].start),
@@ -128,12 +128,12 @@ function storeVideoData() {
 
 	videoDataCollection[videoIndex].segments.sort((a, b) => a.start - b.start);
 
-	var mergedSegments = [];
+	let mergedSegments = [];
 	if (videoDataCollection[videoIndex].segments.length > 0) {
-	    var currentSegment = videoDataCollection[videoIndex].segments[0];
+	    let currentSegment = videoDataCollection[videoIndex].segments[0];
 
-	    for (var k = 1; k < videoDataCollection[videoIndex].segments.length; k++) {
-		var nextSegment = videoDataCollection[videoIndex].segments[k];
+	    for (let k = 1; k < videoDataCollection[videoIndex].segments.length; k++) {
+		let nextSegment = videoDataCollection[videoIndex].segments[k];
 		if (currentSegment.end >= nextSegment.start) {
 		    currentSegment.end = Math.max(currentSegment.end, nextSegment.end);
 		} else {
@@ -170,10 +170,10 @@ function fetchLocalStorage() {
 }
 
 function injectButton() {
-    var elementCheck = setInterval(function() {
+    let elementCheck = setInterval(function() {
         if (document.getElementById("owner")) {
             if (!document.getElementById("playtime")) {
-                var injectedButton = document.createElement("button");
+                let injectedButton = document.createElement("button");
                 injectedButton.id = "playtime";
                 injectedButton.classList.add("yt-spec-button-shape-next", "yt-spec-button-shape-next--tonal", "yt-spec-button-shape-next--mono", "yt-spec-button-shape-next--size-m", "yt-spec-button-shape-next--icon-button");
                 injectedButton.style = "margin-left: 10px; padding: 0 10px; width: fit-content";
