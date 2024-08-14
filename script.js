@@ -76,9 +76,9 @@ function fetchVideoPlaytimePercentage() {
     const videoIndex = getVideoDataIndex()
     if (document.getElementById("playtime")) {
 	if (videoIndex == -1) {
-	    document.getElementById("playtime").innerHTML = "0%"
+	    document.getElementById("playtime").innerText = "0%"
 	} else {
-	    document.getElementById("playtime").innerHTML = videoDataCollection[videoIndex].viewed + "%"
+	    document.getElementById("playtime").innerText = videoDataCollection[videoIndex].viewed + "%"
 	}
     }
 }
@@ -91,7 +91,7 @@ function setVideoEndedStatus() {
 function fetchVideoEndedStatus() {
     const videoIndex = getVideoDataIndex()
     if (videoIndex !== -1 && videoDataCollection[videoIndex].ended == true) {
-	document.getElementById("playtime").innerHTML += " ✓"
+	document.getElementById("playtime").innerText += " ✓"
     }
 }
 
