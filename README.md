@@ -21,9 +21,10 @@ The data is stored in browser localstorage, and can't unfortunately be shared ac
 
 ## Installation
 
-The extension isn't available to install from the Chrome Web Store yet.<br>
+The extension is available on the Chrome Web Store.<br>
+https://chromewebstore.google.com/detail/watchd/cjdkmjpbhgkbjgfhcflccchhhffkhhjd?authuser=0&hl=fr&pli=1<br>
 <br>
-To install it, please follow these instructions:
+The extension can also be installed unpacked, by following these instructions:
 1. Clone this git repository
 2. Navigate to `chrome://extensions`
 3. Enable developer mode
